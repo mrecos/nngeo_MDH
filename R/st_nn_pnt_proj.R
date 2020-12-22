@@ -30,7 +30,8 @@
   names(ids) = NULL
   dists = split(dists, 1:nrow(dists))
   dists = lapply(dists, function(x) c(x[!is.na(x)]))
-  crs_units = st_crs(x)$units
+  #crs_units = st_crs(x)$units
+  crs_units = sf:::udunits_from_proj[st_crs(x)$units]               
 
   # Convert to meters
   if(!is.na(crs_units) & crs_units != "m") {
